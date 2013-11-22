@@ -1,0 +1,17 @@
+{
+  "name": "robots.txt",
+  "version": "0.0.0",
+  "description": "robots.txt middleware for express/connect to server up your robots.txt",
+  "main": "index.js",
+  "scripts": {
+    "lint": "./node_modules/.bin/jshint . --reporter=./node_modules/jshint-full-path/index.js",
+    "pretest": "npm run-script lint",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublish": "npm prune"
+  },
+  "author": "Tom Gallacher",
+  "license": "MIT",
+  "devDependencies": {
+    "jshint-full-path": "~0.1.0"
+  }
+}
