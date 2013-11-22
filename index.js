@@ -1,5 +1,5 @@
 var fs = require('fs')
-  , utils = require('utils')
+  , crypto = require('crypto')
 
 module.exports = function favicon(path, options){
   options = options || {}
@@ -8,6 +8,7 @@ module.exports = function favicon(path, options){
     , robots // robots cache
 
   return function robot(req, res, next){
+    console.log('nom')
     if ('/robots.txt' === req.url) {
       if (robots) {
         res.writeHead(200, robots.headers)
@@ -19,7 +20,7 @@ module.exports = function favicon(path, options){
             { headers:
               { 'Content-Type': 'text/plain'
               , 'Content-Length': buf.length
-              , 'ETag': '"' + utils.md5(buf) + '"'
+              , 'ETag': '"' + crypto.createHash('md5').update(buf) + '"'
               , 'Cache-Control': 'public, max-age=' + (maxAge / 1000)
               }
             , body: buf
