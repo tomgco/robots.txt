@@ -1,6 +1,6 @@
 {
   "name": "robots.txt",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "robots.txt middleware for express/connect to server up your robots.txt",
   "main": "index.js",
   "scripts": {
