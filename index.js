@@ -8,7 +8,6 @@ module.exports = function favicon(path, options){
     , robots // robots cache
 
   return function robot(req, res, next){
-    console.log('nom')
     if ('/robots.txt' === req.url) {
       if (robots) {
         res.writeHead(200, robots.headers)
