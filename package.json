@@ -10,7 +10,7 @@
     "prepublish": "npm prune"
   },
   "author": "Tom Gallacher",
-  "license": "MIT",
+  "license": "New BSD",
   "devDependencies": {
     "jshint-full-path": "~0.1.0"
   }
