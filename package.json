@@ -3,6 +3,9 @@
   "version": "0.3.1",
   "description": "robots.txt middleware for express/connect to server up your robots.txt",
   "main": "index.js",
+  "publishConfig": {
+    "registry": "http://registry.npmjs.org/"
+  },
   "scripts": {
     "lint": "./node_modules/.bin/jshint . --reporter=./node_modules/jshint-full-path/index.js",
     "pretest": "npm run-script lint",
