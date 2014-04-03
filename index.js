@@ -1,9 +1,9 @@
-module.exports = createMiddelware
+module.exports = createMiddleware
 
 var readFileSync = require('fs').readFileSync
   , crypto = require('crypto')
 
-function createMiddelware(path, options) {
+function createMiddleware(path, options) {
 
   // Defaults
   options = options || {}
