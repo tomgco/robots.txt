@@ -1,35 +1,28 @@
-var fs = require('fs')
+module.exports = createMiddleware
+
+var readFileSync = require('fs').readFileSync
   , crypto = require('crypto')
 
-module.exports = function favicon(path, options){
-  options = options || {}
-  path = path || __dirname + '/../public/robots.txt'
-  var maxAge = options.maxAge || 86400000
-    , robots // robots cache
+function createMiddleware(path, options) {
 
-  return function robot(req, res, next){
-    if ('/robots.txt' === req.url) {
-      if (robots) {
-        res.writeHead(200, robots.headers)
-        res.end(robots.body)
-      } else {
-        fs.readFile(path, function(err, buf) {
-          if (err) return next(err)
-          robots =
-            { headers:
-              { 'Content-Type': 'text/plain'
-              , 'Content-Length': buf.length
-              , 'ETag': '"' + crypto.createHash('md5').update(buf) + '"'
-              , 'Cache-Control': 'public, max-age=' + (maxAge / 1000)
-              }
-            , body: buf
-            }
-          res.writeHead(200, robots.headers)
-          res.end(robots.body)
-        })
+  // Defaults
+  options = options || {}
+
+  if (!path) throw new Error('No path provided for robots.txt file')
+
+  var maxAge = options.maxAge || 86400000
+    , txt = readFileSync(path)
+    , headers =
+      { 'Content-Type': 'text/plain'
+      , 'Content-Length': txt.length
+      , 'ETag': '"' + crypto.createHash('md5').update(txt) + '"'
+      , 'Cache-Control': 'public, max-age=' + (maxAge / 1000)
       }
-    } else {
-      next()
-    }
+
+  return function middleware(req, res, next) {
+    if ('/robots.txt' !== req.url) return next()
+    res.writeHead(200, headers)
+    res.end(txt)
   }
+
 }

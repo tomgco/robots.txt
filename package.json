@@ -3,15 +3,20 @@
   "version": "0.3.1",
   "description": "robots.txt middleware for express/connect to server up your robots.txt",
   "main": "index.js",
+  "publishConfig": {
+    "registry": "http://registry.npmjs.org/"
+  },
   "scripts": {
     "lint": "./node_modules/.bin/jshint . --reporter=./node_modules/jshint-full-path/index.js",
     "pretest": "npm run-script lint",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "./node_modules/.bin/istanbul test ./node_modules/.bin/_mocha -- -R spec",
     "prepublish": "npm prune"
   },
   "author": "Tom Gallacher",
   "license": "New BSD",
   "devDependencies": {
-    "jshint-full-path": "~0.1.0"
+    "jshint-full-path": "~0.1.0",
+    "mocha": "^1.18.2",
+    "istanbul": "^0.2.7"
   }
 }
