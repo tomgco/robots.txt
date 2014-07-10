@@ -15,7 +15,7 @@ function createMiddleware(path, options) {
     , headers =
       { 'Content-Type': 'text/plain'
       , 'Content-Length': txt.length
-      , 'ETag': '"' + crypto.createHash('md5').update(txt) + '"'
+      , 'ETag': '"' + crypto.createHash('md5').update(txt).digest('hex') + '"'
       , 'Cache-Control': 'public, max-age=' + (maxAge / 1000)
       }
 

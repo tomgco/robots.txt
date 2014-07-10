@@ -52,7 +52,6 @@ describe('robots.txt middleware', function () {
       createMiddleware(__dirname + '/fixtures/robots.txt')(req, res)
     })
 
-
     it('should set the "Content-Length" header equal to the file size in bytes', function (done) {
       var req = { url: '/robots.txt' }
         , res =
@@ -66,6 +65,17 @@ describe('robots.txt middleware', function () {
       createMiddleware(__dirname + '/fixtures/robots.txt')(req, res)
     })
 
+    it('should set the "ETag" header to the md5 of the robots.txt', function (done) {
+      var req = { url: '/robots.txt' }
+        , res =
+          { writeHead: function (status, headers) {
+              assert.equal('"7d7266f29c4a562082cd27ebdea6a91b"', headers.ETag)
+              done()
+            }
+          , end: function () {}
+          }
+      createMiddleware(__dirname + '/fixtures/robots.txt')(req, res)
+    })
   })
 
 })
