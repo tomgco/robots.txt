@@ -15,8 +15,9 @@
   "author": "Tom Gallacher",
   "license": "New BSD",
   "devDependencies": {
+    "istanbul": "^0.2.7",
+    "jshint": "2.5.6",
     "jshint-full-path": "~0.1.0",
-    "mocha": "^1.18.2",
-    "istanbul": "^0.2.7"
+    "mocha": "^1.18.2"
   }
 }
